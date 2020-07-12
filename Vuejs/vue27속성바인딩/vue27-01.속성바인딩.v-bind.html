@@ -77,3 +77,51 @@
 
 </body>
 </html>
+
+<!-- vue 스크립트 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+
+    new Vue({
+        el: "#app1",
+        data : {
+            idA : null,
+            classA : null,
+            styleA: null,
+            message : "",
+            imagePath: "",
+        },
+        methods: {
+            clickBindId: function (event) {
+                this.$data.idA = this.$data.idA + 10;
+            },
+            clickBindClass: function (event) {
+                this.$data.classA = "container";
+            },
+            clickBindStyle: function (event) {
+                this.$data.styleA = "color:blue; font-size:20pt;";
+            },
+            clickBindValue: function (event) {
+                this.$data.message = "v-bind value";
+            },
+            clickBindSrc: function (event) {
+                this.$data.imagePath = "../images/heart.png";
+            },
+        },
+    });
+
+    new Vue({
+        el: "#app2",
+        data: {
+            message : null,
+            imagePath : "../images/accept.png",
+        },
+        methods: {
+            clickBindSrc   : function(e) {
+                this.imagePath = "../images/action_refresh.gif";
+                this.message = "버튼 클릭";
+            },
+        },
+    });
+
+</script>
