@@ -27,40 +27,41 @@
 <body>
     <xmp>
         javascript에서 style 프로퍼티 설정 방식과 설정시의 주의 사항을 학습한다.
-          1. 명칭은 카멜 표기법 사용. 왜냐하면 자바스립트이기 때문.
-            예시) 케밥 표기법 ==> 카멜 표기법
-            font-size ==> fontSize
-            backgroundColor ==> backgroundColor
+        1. 명칭은 카멜 표기법 사용. 왜냐하면 자바스립트이기 때문.
+        예시) 케밥 표기법 ==> 카멜 표기법
+        font-size ==> fontSize
+        backgroundColor ==> backgroundColor
 
-          2. 구분자는 세미콜론 대신 콤마 사용. 왜냐하면 자바스크립트 객체기이기 때문.
-            {
-                background-color: yellow;
-                font-size :  12pt;
-            }
-            ==>
-            {
-                backgroundColor: "yellow",
-                fontSize :  "12pt",
-            }
+        2. 구분자는 세미콜론 대신 콤마 사용. 왜냐하면 자바스크립트 객체기이기 때문.
+        {
+        background-color: yellow;
+        font-size : 12pt;
+        }
+        ==>
+        {
+        backgroundColor: "yellow",
+        fontSize : "12pt",
+        }
 
         도전1. Vue.js 를 사용하여 "==>"를 클릭하면 TO-BE 박스에 아래의
-               style 속성을 적용하여 AS-IS 처럼 만드시오.
-          height: 50px;
-          width: 150px;
-          border: 1px solid black;
-          text-align: center;
-          line-height: 50px;
-          font-weight: 800;
-          color: red;
-          background-color: darkgoldenrod;
-          padding: 50px;
+        style 속성을 적용하여 AS-IS 처럼 만드시오.
+        height: 50px;
+        width: 150px;
+        border: 1px solid black;
+        text-align: center;
+        line-height: 50px;
+        font-weight: 800;
+        color: red;
+        background-color: darkgoldenrod;
+        padding: 50px;
     </xmp>
     <style>
         #example3>* {
-            float:left;
+            float: left;
             margin: 10px 50px 10px 0px;
             line-height: 100px;
         }
+
         #example3asis {
             height: 50px;
             width: 150px;
@@ -72,7 +73,8 @@
             background-color: darkgoldenrod;
             padding: 50px;
         }
-        #example3tobe{
+
+        #example3tobe {
             border: 1px dashed blue;
             width: 150px;
         }
@@ -91,16 +93,17 @@
     </div>
     <hr style="clear:both;">
     <xmp>
-        도전: mouseover 와 mouseout 이벤트를 사용하는 것을 복습한다.
+        도전2: mouseover 와 mouseout 이벤트를 사용하는 것을 복습한다.
         버튼 위로 mouseover 되면 배경색은 purple 로 글자색은 yellow 로 바꾸도록 style 을 설정하시오.
         버튼 위에서 mouseout 되면 배경색을 aqua 로 글자색은 black 으로 바꾸도록 style 을 설정하시오.
 
         https://javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave
     </xmp>
     <style>
-        div > #eljvs, div > #elvue {
+        div>#eljvs,
+        div>#elvue {
 
-            float:left;
+            float: left;
             margin: 10px 50px 50px 0px;
             line-height: 100px;
         }
@@ -116,7 +119,8 @@
 
         <div id="elvue">
             Vue.js 로 style 적용<br>
-            <div id="c" v-bind:style="style1" v-on:mouseover="overEvent(this)" v-on:mouseout="outEvent(this)">
+            <div id="c" v-bind:style="style1" v-on:mouseover="overEvent(this)" v-on:mouseout="outEvent(this)"
+                style="font-size: 12px;">
                 테스트
             </div>
         </div>
@@ -125,3 +129,100 @@
 </body>
 
 </html>
+
+<!-- vue 스크립트 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        el: "#example3",
+        data: { style1: null },
+        methods: {
+            clickArrow: function (event) {
+                /*
+                    #example3asis {
+                        height: 50px;
+                        width: 150px;
+                        border: 1px solid black;
+                        text-align: center;
+                        line-height: 50px;
+                        font-weight: 800;
+                        color: red;
+                        background-color: darkgoldenrod;
+                        padding: 50px;
+                    }
+                */
+                this.$data.style1 = {
+                    height: "50px",
+                    width: "150px",
+                    border: "1px solid black",
+                    textAlign: "center",
+                    lineHeight: "50px",
+                    fontweight: "800",
+                    color: "red",
+                    backgroundColor: "darkgoldenrod",
+                    padding: "50px",
+                }
+            },
+        },
+    });
+
+    new Vue({
+        el: "#elvue",
+        data: {
+            style1: null,
+        },
+        methods: {
+            overEvent: function (event) {
+                /* mouseover 되면 배경색은 purple 로 글자색은 yellow
+                
+                background-color: purple;
+                color: yellow;
+                */
+                this.$data.style1 = {
+                    backgroundColor: "purple",
+                    color: "yellow",
+                }
+
+            },
+            outEvent: function (event) {
+                /* mouseout 되면 배경색을 aqua 로 글자색은 black 으로 
+                background-color: aqua;
+                color: black;
+                */
+                this.$data.style1 = {
+                    backgroundColor: "aqua",
+                    color: "black",
+                }
+            },
+        }
+    });
+
+    // 자바스크립트로 이벤트 핸들러 만들기
+    // overEvent(this), outEvent(this)
+    function overEvent(event) {
+        debugger;
+        console.log("overEvent", event, event.target);
+        // 적용할 엘리먼트 찾기 === 자기자신
+        //  document.getElementById()  == event.target
+        event.style.backgroundColor = "purple";
+        event.style.color = "yellow";
+
+        /* object 합치기
+        1. Ojbect.assign() 메서드방식
+        2. spread 연산자 방식
+        3. jquery.extend() 메서드방식
+        4. JSON.stringfy()
+        */
+        Object.assign(event.style, {
+            backgroundColor: "purple",
+            color: "yellow",
+        });
+    }
+    function outEvent(event) {
+        console.log("outEvent", event, event.target);
+        // 적용할 엘리먼트 찾기 === 자기자신
+        //  document.getElementById()  == event.target
+        event.style.backgroundColor = "aqua";
+        event.style.color = "black";
+    }
+</script>
