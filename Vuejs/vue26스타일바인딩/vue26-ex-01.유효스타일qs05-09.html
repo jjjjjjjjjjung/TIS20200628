@@ -52,3 +52,31 @@
 </body>
 
 </html>
+
+<!-- vue 스크립트 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        el: "#example",
+        data: {
+            score: null,
+        },
+        computed: {
+            info: function () {
+                // input.value 는 문자열이다. 
+                // 문자열을 숫자로 형변환.
+                var val = Number(this.$data.score);
+                if (1 <= val && val <= 100) {
+                    return {
+                        warning: false,
+                    }
+                }
+                else {
+                    return {
+                        warning: true,
+                    }
+                }
+            }
+        },
+    })
+</script>

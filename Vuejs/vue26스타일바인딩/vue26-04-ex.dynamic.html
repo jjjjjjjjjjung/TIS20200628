@@ -22,6 +22,13 @@
 </head>
 <body>
     <pre>
+	  Vue.js 에서 class 속성 적용 방식.
+	  1. 단일 class 적용. ex) class="active" 
+	     ==> 문자열로 처리 
+	  2. 다중 class 적용. ex) class="active done"
+	     ==> true / false 로 처리 
+
+
 
       미리 설정되어 있는 CSS 를 사용하여 만드시오.
 
@@ -47,12 +54,26 @@
     new Vue({
         el:'#app',
         data: {
-            state : null,
-            msg : null,
+            state : "ready",
+            // msg : "ready",
         },
         methods: {
             change : function(event){
-                
+                if( this.$data.state === "ready")
+                    this.$data.state = "active";
+                else if( this.$data.state === "active")
+                    this.$data.state = "done";
+                else if( this.$data.state === "done")
+                    this.$data.state = "ready";
+                else
+                    this.$data.state = "ready";
+
+                // this.$data.msg  = this.$data.state;
+            }
+        },
+        computed: {
+            msg : function(){
+                return this.$data.state;
             }
         },
     });
