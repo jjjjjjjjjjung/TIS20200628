@@ -184,29 +184,41 @@
                 background-color: purple;
                 color: yellow;
                 */
-                this.$data.style1 = {
-                    backgroundColor: "purple",
-                    color: "yellow",
-                }
 
+                // 이 방식은 안됨.
+                //this.style1["backgroundColor"] = "purple";
+                //this.style1["color"]           = "yellow";
+
+                // 해결책1. 재할당 처리. style1 이 referenced type 이기 때문
+                // Object Deep Copy 필요 : Object.assign( ); 사용
+                var copied = Object.assign({}, this.style1);
+                copied["backgroundColor"] = "purple";
+                copied["color"] = "yellow";
+                this.$data.style1 = copied;
             },
             outEvent: function (event) {
                 /* mouseout 되면 배경색을 aqua 로 글자색은 black 으로 
                 background-color: aqua;
                 color: black;
                 */
-                this.$data.style1 = {
-                    backgroundColor: "aqua",
-                    color: "black",
-                }
+
+                // 이 방식은 안됨.
+                //this.style1["backgroundColor"] = "aqua";
+                //this.style1["color"] = "black";
+
+                // 해결책1. 재할당 처리. style1 이 referenced type 이기 때문
+                // Object Deep Copy : Object.assign( ); 사용
+                var copied = Object.assign({}, this.style1);
+                copied["backgroundColor"] = "aqua";
+                copied["color"] = "black";
+                this.$data.style1 = copied;
             },
-        }
+        },
     });
 
     // 자바스크립트로 이벤트 핸들러 만들기
     // overEvent(this), outEvent(this)
     function overEvent(event) {
-        debugger;
         console.log("overEvent", event, event.target);
         // 적용할 엘리먼트 찾기 === 자기자신
         //  document.getElementById()  == event.target

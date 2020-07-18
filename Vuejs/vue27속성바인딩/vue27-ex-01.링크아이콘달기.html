@@ -32,39 +32,43 @@
 
 <body>
     <xmp>
-        1. a 태그에 click 이벤트 핸들러 작성. 이벤트지시자(v-on:click) 추가
-        파일의 확장자가 ppt 이면 a.presentation 적용
-        파일의 확장자가 mp4 이면 a.viedo 적용
-        파일의 확장자가 pdf 이면 a.pdf 적용
-        파일의 확장자가 gif 이면 a.image 적용
-        파일의 확장자가 png 이면 a.image 적용
-        파일의 확장자가 jpg 이면 a.image 적용
-        ==> a 태그의 리다이렉트 이벤트 취소 기능 필요
-        ==> 클릭된 a 태그의 href 속성값을 어떻게 얻을 수 있나?
-        ==> 클릭된 a 태그의 href 속성값에서 파일의 확장자를 어떻게 얻을 수 있나?
-        // href 의 마지막 3개 글자 추출하기 : substr()
-        var href = event.target.href;
-        var ext = href.substr(-3); // href.substr(href.lenght-3, 3);
+        1. a 태그에 속성지시자(v-bind:class) 를 추가한다.   
+            ==> class 에 해당되는 값을 data 에서 어떻게 설정할 것인가?
+        2. a 태그에 click 이벤트 핸들러 작성. 이벤트지시자(v-on:click) 를 추가
+	        파일의 확장자가 ppt 이면 a.presentation 적용
+	        파일의 확장자가 mp4 이면 a.viedo 적용
+	        파일의 확장자가 pdf 이면 a.pdf 적용
+	        파일의 확장자가 gif 이면 a.image 적용
+	        파일의 확장자가 png 이면 a.image 적용
+	        파일의 확장자가 jpg 이면 a.image 적용
+	        ==> a 태그의 리다이렉트 이벤트 취소 기능 필요
+	        ==> 클릭된 a 태그의 href 속성값을 어떻게 얻을 수 있나?
+	        ==> 클릭된 a 태그의 href 속성값에서 파일의 확장자를 어떻게 얻을 수 있나?
+	        // href 의 마지막 3개 글자 추출하기 : substr()
+	        var href = event.target.href;
+	        var ext = href.substr(-3); // href.substr(href.lenght-3, 3);
     </xmp>
     <hr>
     <div id="content">
         <h1>Adding Icons to Links</h1>
         <p>Here's a list of downloadable files:</p>
         <ul class="icon-links">
-            <li><a v-on:click="atagclick" href="presentation.ppt">Presentation slides</a></li>
-            <li><a v-on:click="atagclick" href="video.mp4">Video of presentation</a></li>
-            <li><a v-on:click="atagclick" href="notes.pdf">Notes for presentation</a></li>
-            <li><a v-on:click="atagclick" href="icons.gif">GIF Icon sprite</a></li>
-            <li><a v-on:click="atagclick" href="icons.png">PNG Icon sprite</a></li>
-            <li><a v-on:click="atagclick" href="icons.jpg">PNG Icon sprite</a></li>
-            <li><a v-on:click="atagclick" href="fuyyu.ppt">Presentation slides</a></li>
-            <li><a v-on:click="atagclick" href="fyyuy.mp4">Video of presentation</a></li>
-            <li><a v-on:click="atagclick" href="uydyuflk.pdf">Notes for presentation</a></li>
-            <li><a v-on:click="atagclick" href="OIP.gif">GIF Icon sprite</a></li>
-            <li><a v-on:click="atagclick" href="ID7890IO.png">PNG Icon sprite</a></li>
-            <li><a v-on:click="atagclick" href="PFDY.jpg">PNG Icon sprite</a></li>
+            <li><a href="presentation.ppt">Presentation slides</a></li>
+            <li><a href="video.mp4">Video of presentation</a></li>
+            <li><a href="notes.pdf">Notes for presentation</a></li>
+            <li><a href="icons.gif">GIF Icon sprite</a></li>
+            <li><a href="icons.png">PNG Icon sprite</a></li>
+            <li><a href="icons.jpg">PNG Icon sprite</a></li>
+            <li><a href="fuyyu.ppt">Presentation slides</a></li>
+            <li><a href="fyyuy.mp4">Video of presentation</a></li>
+            <li><a href="uydyuflk.pdf">Notes for presentation</a></li>
+            <li><a href="OIP.gif">GIF Icon sprite</a></li>
+            <li><a href="ID7890IO.png">PNG Icon sprite</a></li>
+            <li><a href="PFDY.jpg">PNG Icon sprite</a></li>
         </ul>
     </div>
+	<hr>		
+	
 </body>
 
 </html>
@@ -96,5 +100,5 @@
                 event.preventDefault();
             }
         },
-    })
+    });
 </script>
