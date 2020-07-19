@@ -65,21 +65,66 @@
 </head>
 
 <body>
-    <header>
-        Header
-    </header>
-    <div id="content">
-        <p>Content</p>
-        <aside>
-            Aside
-        </aside>
-        <div id="content-list">
-            List
-        </div>
+    <div id="app">
+        <component-header></component-header>
+        <component-content></component-content>
+        <component-footer></component-footer>
     </div>
-    <footer>
-        Footer
-    </footer>
 </body>
 
 </html>
+
+<script>
+    Vue.component("component-header", {
+        props: [],
+        data: function() { return {}; },
+        template : `
+            <header>
+                Header
+            </header>
+        `
+    });
+    Vue.component("component-footer", {
+        props: [],
+        data: function() { return {}; },
+        template : `
+            <footer>
+                Footer
+            </footer>
+        `
+    });
+    Vue.component("component-aside", {
+        props: [],
+        data: function() { return {}; },
+        template : `
+            <aside>
+                Aside
+            </aside>
+        `
+    });
+    Vue.component("component-content-list", {
+        props: [],
+        data: function() { return {}; },
+        template : `
+            <div id="content-list">
+                List
+            </div>
+        `
+    });
+    Vue.component("component-content", {
+        props: [],
+        data: function() { return {}; },
+        template : `
+        <div id="content">
+            <p>Content</p>
+            <component-aside></component-aside>
+            <component-content-list></component-content-list>
+        </div>
+        `
+    });
+
+    // Vue 인스턴스 만들기
+    new Vue({
+        el: "#app",
+    });
+</script>
