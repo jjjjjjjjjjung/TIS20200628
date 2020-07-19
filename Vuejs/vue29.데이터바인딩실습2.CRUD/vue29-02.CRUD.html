@@ -70,6 +70,7 @@
         el: "#app",
         data: {
             user: {
+                id: null,
                 name: null,
                 power: 0
             },
@@ -85,7 +86,7 @@
                 // 입력값은 user 에   있다.
                 console.log( this.$data.user);
                 var user = this.$data.user; 
-                
+
                 /* 
                 user 에 id 프로퍼티 추가
                 // max(id)를 찾는 방법 ==> reduce() 메서드 사용.
@@ -102,10 +103,15 @@
                 });
                 console.log( maxObj);
 
-                // user 객체 id 프러퍼티와 값 추가
-                // user = {name:?, power: ? }
-                user.id = maxObj.id + 1; // {eid:?, name:?, power: ? }
-
+                if( maxObj )  {
+                    // user 객체 id 프러퍼티와 값 추가
+                    // user = {name:?, power: ? }
+                    user.id = maxObj.id + 1; // {eid:?, name:?, power: ? }
+                }
+                else {
+                    user.id = 1;
+                } 
+                
                 // user를 this.$data.list 에 추가하시오. 
                 // 참조 타입 변수이면 재할당(=== 깊은 복사) 필요.
                 // 1. Vue.set()
@@ -145,17 +151,23 @@
                 // this.$data.list 수정
                 // 참조 타입 변수이면 재할당(=== 깊은 복사) 필요.
                 // 1. Vue.set()
-                // 2. Array.concat()
-                // 3. spread 연산자
                 Vue.set(this.$data.list, index, user );
 
             },
             doEdit : function(userid, index){
                 console.log( userid, index);
-
+                
+                // this.$data.user. id 프로퍼티가 없다.
+                this.$data.user = this.$data.list[index]; 
             },
             doDel : function(userid, index){
                 console.log( userid, index);
+                
+                // this.$data.list 에서 삭제하시오.
+                // 참조 타입 변수이면 재할당(=== 깊은 복사) 필요. 
+                // array.splice() 메서드는 내부적으로 깊은 복사(deep copy) 사용. 
+                // this.$data.list의 index 부터 1개 삭제하시오
+                this.$data.list.splice(index, 1 );
 
             },
         },
