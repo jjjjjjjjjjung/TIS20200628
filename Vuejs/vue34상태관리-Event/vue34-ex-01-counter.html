@@ -62,8 +62,8 @@
 
     <div id="app" class="component-parent">
         Parent counter : {{ counter }} <br>
-        <button name="parent" v-on:click="addCounter(this.event, 1)">+</button>
-        <button name="parent" v-on:click="subCounter(this.event, 1)">-</button>
+        <button name="parent" v-on:click="addCounter(this.event, +1)">+</button>
+        <button name="parent" v-on:click="subCounter(this.event, -1)">-</button>
         <p></p>
 
         <!-- Child 컴포넌트를 등록하고 counter 데이터 속성을 props로 전달한다. -->
