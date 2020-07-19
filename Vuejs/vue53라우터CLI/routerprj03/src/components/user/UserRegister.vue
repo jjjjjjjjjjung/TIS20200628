@@ -95,43 +95,4 @@
         </div>
     </div>
 </template>
-
 <style scoped></style>
-
-<script>
-export default {
-    /* npdtmc^2w */
-    data() {
-        return {
-            user: {
-                name: "",
-                id: "",
-                pwd: "",
-                email: ""
-            },
-            idErr: false,
-            pwdErr: false,
-            pwdErr2: false,
-            emailErr: false,
-            isProcess : false
-        };
-    },
-    methods: {
-        checkId: function() {
-
-        },
-        checkPwd: function(){
-
-        },
-        checkRePwd : function() {
-
-        },
-        checkEmail: function(){
-
-        },
-        join: function() {
-
-        }
-    }
-};
-</script>

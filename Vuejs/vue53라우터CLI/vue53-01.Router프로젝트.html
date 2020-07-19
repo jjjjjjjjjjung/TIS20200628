@@ -69,11 +69,11 @@
             ? Save this as a preset for future projects? No
 
         step 04. cd routerprj01              # 폴더 이동
+        step 07. npm run serve             # 프로젝트 실행
         
         step 05. vue add router              # Vue-Router 플러그인 추가
         step 06. npm install vuex --save     # Veux 추가
 
-        step 07. npm run serve             # 프로젝트 실행
         step 08. package.json 수정   # 프로젝트 실행시 브라우저 오픈 설정
             "scripts": {
                 "serve": "vue-cli-service serve --open --port 4000", /* --open: 브라우저로 열기, --port 4000 : 포트 지정 */
@@ -107,7 +107,7 @@
 
     ##################################
     # 프로젝트 생성 후 로그인 및 회원가입 기능 추가 작업
-    # 1. componet 추가
+    # 1. componets에 user 폴더 추가
     # 2. view 추가
     # 3. router 수정
     ##################################
@@ -115,10 +115,11 @@
                 ~/src/components/login/user/UserLogin.vue 생성 및 수정
                 ~/src/components/login/user/UserRegister.vue 생성 및 수정
         setp 2. views 에 추가
-                cp ~/src/views/About.vue ~/src/views/Signup.vue
+                cp ~/src/views/About.vue  ~/src/views/Signup.vue
         setp 3. ~/src/router/index.js 수정
             import UserLogin from "@/components/user/UserLogin.vue";
 
+            아래 코드 추가 
             {
                 path: "/signup",
                 name: "Signup",
