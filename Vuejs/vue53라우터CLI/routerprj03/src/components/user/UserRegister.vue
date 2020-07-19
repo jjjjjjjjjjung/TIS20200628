@@ -96,3 +96,9 @@
     </div>
 </template>
 <style scoped></style>
+
+<script>
+export default {
+    /* np dt mc^2w */
+}
+</script>

@@ -33,7 +33,7 @@
         2. 프로젝트 관련 작업
             step 1. npm install -g @vue/cli     # Vue-CLI 전역 설치
             step 2. vue -V                      # Vue-CLI 버전 확인
-            step 3. vue create  todoprj01     # Vue 프로젝트 생성. package.json 생성. 라이브러리 다운로드
+            step 3. vue create todoprj01     # Vue 프로젝트 생성. package.json 생성. 라이브러리 다운로드
                 Vue CLI v4.4.1
                 ? Please pick a preset: Manually select features
                 ? Check the features needed for your project: Babel, Router, Vuex, Linter
@@ -52,9 +52,10 @@
                     "build": "vue-cli-service build",
                     "lint": "vue-cli-service lint"
                 },
-            step 8. npm run serve               # 프로젝트 실행
-            step 9. npm run lint                # 코드 표준화 검사
-            step 10. npm run build               # 웹팩 빌드. /dist/ 에 파일 만들어짐.
+            step 8. ls                  # package.json 존재 여부 확인 
+            step 8. npm run serve       # package.json 존재하면 프로젝트 실행
+            step 9. npm run lint        # 코드 표준화 검사
+            step 10. npm run build      # 웹팩 빌드. /dist/ 에 파일 만들어짐.
 
 
         2-2. 프로젝트 폴더 구조
@@ -72,6 +73,7 @@
             │   │   └─ login            # 폴더 생성
             │   ├─ router               # 라우터
             │   ├─ views                # 라우터 페이지
+            │   │   └─ Todo.vue             # 폴더 생성
             │   ├─ App.vue
             │   └─ main.js
             ├─ babel.config.js
@@ -82,7 +84,7 @@
         2-3. 프로젝트 초기 설정. page 133~134
             프로젝트의 폴더 구조
             └─ public/index.html 에 설정
-            2-3-1. viewpoert 설정
+            2-3-1. viewport 설정
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
             2-3-2. fontawesome 설정
@@ -99,7 +101,7 @@
         3. 프로젝트 1차 구현
             3-1. 컴포넌트 생성
                 Todo        : Todo View .                        ~/src/view/Todo.vue
-                TodoHeade   : 애플리케이션 이름 표시.            ~/src/components/todo/TodoHeade.vue
+                TodoHeade   : 애플리케이션 이름 표시.            ~/src/components/todo/TodoHeader.vue
                 TodoInput   : 할 일 입력 및 추가.                ~/src/components/todo/TodoInput.vue
                 TodoList    : 할 일 목록 표시 및 아이템 삭제.    ~/src/components/todo/TodoList.vue
                 TodoFooter  : 할 일 모두 삭제.                   ~/src/components/todo/TodoFooter.vue
@@ -113,7 +115,7 @@
                 └─ src
                 │   └─ components           # 폴더 생성
                 │       │   └─ todo             # 폴더 생성
-                │       │       └─ TodoHeade.vue
+                │       │       └─ TodoHeader.vue
                 │       │       └─ TodoInput.vue
                 │       │       └─ TodoList.vue
                 │       │       └─ TodoFooter.vue
@@ -123,9 +125,40 @@
                 ├─ package.json
                 └─ README.md
 
-            3-2. 컴포넌트 구현
+            3-2. 라우팅 설정 
 
-            3-3. 상태 관리 구현
+                step 3-2-1. ~/src/router/index.js 수정
+
+                    아래 코드 추가 
+                    {
+                        path: "/todo",
+                        name: "Todo",
+                        // route level code-splitting
+                        // this generates a separate chunk (signup.[hash].js) for this route
+                        // which is lazy-loaded when the route is visited.
+                        component: () =>
+                            import(/* webpackChunkName: "signup" */ "../views/Todo.vue")
+                    }
+                    
+                step 3-2-2. App.vue 에 router-link 추가
+                    <div id="app">
+                        <div id="nav">
+                            <router-link to="/">Home</router-link> | 
+                            <router-link to="/about">About</router-link> |
+                            <router-link to="/todo">Todo</router-link>
+                        </div>
+                        <router-view />
+                    </div>
+
+
+            3-3. 컴포넌트 구현
+                src/views/Todo.vue  구현
+                src/components/todo/TodoHeader.vue  구현 
+                src/components/todo/TodoInput.vue   구현
+                src/components/todo/TodoList.vue    구현
+                src/components/todo/TodoFooter.vue  구현
+            
+            3-4. 상태 관리 구현
                 props 와 이벤트를 이용하여 상태 관리 구현
 
 

@@ -122,7 +122,7 @@ export default {
                         //로그인 인증을 받았다면...
                         alert("로그인 성공");
                         sessionStorage.setItem("uname", this.user.name);
-                        sessionStorage.s etItem("uidx", this.user.idx);
+                        sessionStorage.setItem("uidx", this.user.idx);
                         sessionStorage.setItem("uid", this.user.uid);
 
                         this.isLogin = true;
