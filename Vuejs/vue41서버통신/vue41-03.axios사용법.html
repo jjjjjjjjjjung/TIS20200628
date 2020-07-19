@@ -68,4 +68,38 @@
     </div>
 </body>
 
-</html>
+</html>
+
+<!-- vue 스크립트 플러그인 임포트 -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"> /* axios : vue 비동기 처리 플러그인 임포트 */</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"> /* jQuery library */</script>
+<script>
+    /* edtmc^2w */
+    new Vue({
+        el: "#app",
+        data: {
+            message1: null,
+            message2: null,
+        },
+        methods: {
+            clickMenu1 : function(event){
+                axios({
+                    url: "http://localhost:5050/html",  // 호출되는 서버 주소.
+                    method: "get",       // request method: get, post, delete, put
+                    params: null,  // 서버로 보내는 데이터. { data1:"test1", data2:"test2" }
+                    timeout: 30000,    // 최대 대기 시간: 30초. 30초 이상이 되면 fail 부분이 실행됨.
+                    responseType: "html",  // response로 넘어오는 데이터 형태: text, html, xml, json, jsonp, script
+                })
+                .then((res)=>{
+                    debugger;
+                    console.log(res.data);
+                    this.$data.message1 = res.data; 
+                })
+                .catch((err)=>{
+
+                });
+            }
+        },
+    })
+</script>     
