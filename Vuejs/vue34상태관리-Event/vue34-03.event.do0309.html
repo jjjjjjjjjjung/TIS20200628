@@ -38,4 +38,36 @@
 </body>
 </html>
 
-
+<!-- vue 스크립트 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script>
+    // 컴포넌트 만들기: np dt mc^2w
+    Vue.component("child-component", {
+        props: [],
+        data: function(){ return {} },
+        template: `
+            <div>
+                <button v-on:click="showLog">show</button>
+            </div>
+        `,
+        methods : {
+            showLog : function(event){
+                // 이벤트 발생시키기 .
+                // 이벤트명: show-log
+                this.$emit("show-log", "abc", 123)
+            }
+        }
+    });
+    
+    // 인스턴스 만들기: e dt mc^2w
+    new Vue({
+        el: "#app",
+        methods: {
+            printText : function(arg1,arg2,arg3){
+                debugger;
+                console.log(arg1, arg2, arg3);
+                console.log(arguments);
+            },
+        },
+    });
+</script>

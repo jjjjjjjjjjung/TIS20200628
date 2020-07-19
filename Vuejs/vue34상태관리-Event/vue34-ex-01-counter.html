@@ -52,22 +52,77 @@
           Child 컴포넌트에서  - 버튼을 클릭하면 sub-counter 이벤트 발생
 
         child-componet 템플릿 태그는 아래와 같이 설정하시오.
-          <div>
-              <button v-on:click="addCount">Add Count</button>
-              <button v-on:click="clearCount">Clear Count</button>
+          <div class="component-child">
+              Child counter : {{ num }} <br>
+              <button v-on:click="addCounter">+</button>
+              <button v-on:click="subCounter">-</button>
           </div>
     </xmp>
     <hr>
 
     <div id="app" class="component-parent">
         Parent counter : {{ counter }} <br>
-        <button v-on:click="addCounter">+</button>
-        <button v-on:click="subCounter">-</button>
+        <button v-on:click="addCounter(this.event, +1)">+</button>
+        <button v-on:click="subCounter(this.event, -1)">-</button>
         <p></p>
 
         <!-- Child 컴포넌트를 등록하고 counter 데이터 속성을 props로 전달한다. -->
-        <component-child v-bind:num="counter" v-on:add-counter="addCounter"  v-on:sub-counter="subCounter" ></component-child>
+        <component-child 
+            v-bind:num      ="counter" 
+            v-on:add-counter="addCounter" 
+            v-on:sub-counter="subCounter">
+        </component-child>
     </div>
 </body>
 
 </html>
+
+<!-- vue 스크립트 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script>  
+    // 컴포넌트 만들기: np dt mc^2w
+    Vue.component("component-child", {
+        props: ["num"],
+        data: function(){ return {} },
+        template:`
+          <div class="component-child">
+              Child counter : {{ num }} <br>
+              <button v-on:click="addCounter">+</button>
+              <button v-on:click="subCounter">-</button>
+          </div>
+        `,
+        methods: {
+            addCounter : function(event){
+                // 이벤트 발생시키기 ==> this.$emit()
+                // 이벤트명: add-counter
+                this.$emit("add-counter", "이벤트", +1);
+            },
+            subCounter : function(event){
+                // 이벤트 발생시키기 ==> this.$emit()
+                // 이벤트명: sub-counter
+                this.$emit("sub-counter", "이벤트", -1);
+            },
+        }
+    })
+    
+    // 인스턴스 만들기: e dt mc^2w
+    new Vue({
+        el: "#app",
+        data: {
+            counter: 0
+        },
+        methods: {
+            addCounter : function(event, param){
+                debugger;
+                // event 는 무엇일까요?                
+                this.$data.counter = this.$data.counter + param;
+
+            },
+            subCounter : function(event, param){
+                debugger;
+                // event 는 무엇일까요?
+                this.$data.counter = this.$data.counter + param;
+            },
+        }
+    })
+</script>
