@@ -95,34 +95,33 @@
             addCounter : function(event){
                 // 이벤트 발생시키기 ==> this.$emit()
                 // 이벤트명: add-counter
-                this.$emit("add-counter", "이벤트", +1);
+                this.$emit("add-counter", event, +1);
             },
             subCounter : function(event){
                 // 이벤트 발생시키기 ==> this.$emit()
                 // 이벤트명: sub-counter
-                this.$emit("sub-counter", "이벤트", -1);
+                this.$emit("sub-counter", event, -1);
             },
-        }
-    })
+        },
+    });
     
     // 인스턴스 만들기: e dt mc^2w
     new Vue({
         el: "#app",
         data: {
-            counter: 0
+            counter: 0,
         },
         methods: {
             addCounter : function(event, param){
                 debugger;
-                // event 는 무엇일까요?                
+                // event 는 무엇일까요? 부모일때와 자식일때 다르다.             
                 this.$data.counter = this.$data.counter + param;
-
             },
             subCounter : function(event, param){
                 debugger;
-                // event 는 무엇일까요?
+                // event 는 무엇일까요? 부모일때와 자식일때 다르다. 
                 this.$data.counter = this.$data.counter + param;
             },
-        }
-    })
+        },
+    });
 </script>
