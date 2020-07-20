@@ -11,7 +11,6 @@
     <title>05-12</title>
 
     <style>
-
         * {
             box-sizing: border-box;
         }
@@ -132,6 +131,11 @@
         background: white;
         border-radius: 5px;
     }
+    li.checked {
+        background: #BBB;
+        color: #fff;
+        text-decoration: line-through;
+    }
     .checkBtn {
         line-height: 45px;
         color: #62acde;
@@ -213,7 +217,7 @@
 
 	    <section>
 	        <transition-group name="list" tag="ul">
-	            <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem.id" class="shadow" >
+	            <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem.id" v-bind:class="checked(todoItem.done)" v-on:click="doneToggle(todoItem.id)">
 	                <i class="checkBtn fas fa-check" aria-hidden="true"></i>
 	                {{ todoItem.todo }}
 	                <span class="removeBtn" type="button" v-on:click="removeTodo(todoItem.id, index)" >
@@ -249,6 +253,12 @@
             ],
         },
 	    methods: {
+            checked: function (done) {
+                if (done)
+                    return { checked: true };
+                else
+                    return { checked: false };
+            },
 	        addTodo() {
 	            if (this.newTodoItem !== "") {
                     /* 
@@ -287,6 +297,11 @@
                 // 참조 타입 변수이면 재할당(=== 깊은 복사) 필요. 
                 // array.splice() 메서드는 내부적으로 깊은 복사(deep copy) 사용. 
                 // this.$data.todoItems의 index 부터 1개 삭제하시오
+				
+                var index = this.$data.todoItems.findIndex(function (item) {
+                    return item.id === this.id;
+                }, todoItem);
+				
                 this.$data.todoItems.splice(index, 1 );
 	        },
 	        clearTodo() {
@@ -295,6 +310,12 @@
 	        clearInput() {
 	            this.newTodoItem = "";
 	        },
+            doneToggle: function (id) {
+                var index = this.todoItems.findIndex(function (item) {
+                    return item.id === id;
+                });
+                this.todoItems[index].done = !this.todoItems[index].done;
+            },
 	    }
 	});
 </script>
