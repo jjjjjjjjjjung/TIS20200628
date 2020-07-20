@@ -88,15 +88,18 @@
                 var user = this.$data.user; 
 
                 /* 
-                user 에 id 프로퍼티 추가
-                // max(id)를 찾는 방법 ==> reduce() 메서드 사용.
-                // reduce() 메서드 사용하여 max 찾기
-                // prev = {id:2,  name:"", power: 200 }
-                // next = {id:1,  name:"", power: 300 }
-                var obj = array.reduce( function(prev, next){
-                    return prev.id > next.id ? prev:  next ; // 최대값 id가 있는 객체 
-                    return prev.id < next.id ? prev:  next ; // 최소값 id가 있는 객체 
-                });
+                max(id)를 찾는 방법 
+                1. reduce() 메서드 사용.
+                    var maxObj = array.reduce( function(prev, next){
+                        return prev.id > next.id ? prev:  next ; // 최대값 id가 있는 객체 
+                        return prev.id < next.id ? prev:  next ; // 최소값 id가 있는 객체 
+                    });
+                    var newId  = maxObj.id + 1;
+                2. map()과 Math.max()를 사용하는 방법
+                    var arrIds = array.map( function(el){
+                        return el.id;
+                    });
+                    var newId  = Math.max(...arrIds) + 1;                
                 */
                 var maxObj = this.$data.list.reduce( function(prev, next){
                     return prev.id > next.id ? prev:  next ;
