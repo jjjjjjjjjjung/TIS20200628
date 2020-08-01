@@ -184,9 +184,9 @@
 	    <div class="inputBox shadow">
 	        <input
 	            type="text"
-	            v-model:value="newTodoItem"
+	            v-model.trim:value="newTodoItem"
 	            placeholder="Type what you have to do"
-	            v-on:keypress.enter="addTodo"
+	            v-on:keyup.enter="addTodo"
 	        />
 	        <span class="addContainer" v-on:click="addTodo">
 	            <i class="addBtn fas fa-plus" aria-hidden="true"></i>
@@ -316,6 +316,6 @@
                 });
                 this.todoItems[index].done = !this.todoItems[index].done;
             },
-	    }
+	    },
 	});
 </script>

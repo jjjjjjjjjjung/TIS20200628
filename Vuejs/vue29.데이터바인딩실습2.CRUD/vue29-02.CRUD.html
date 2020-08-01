@@ -74,18 +74,25 @@
                 name: null,
                 power: 0
             },
-            list : [
-                {id: 1, name: "슈퍼맨", power: 100},
-                {id: 2, name: "아쿠아맨", power: 300},
-                {id: 3, name: "스파이더맨", power: 500},
-                {id: 6, name: "배트맨", power: 30},
+            list: [
+                {id:1, name: "슈퍼맨", power: 100},
+                {id:2, name: "아쿠아맨", power: 300},
+                {id:3, name: "스파이더맨", power: 500},
+                {id:4, name: "배트맨", power: 30},
             ],
         },
         methods: {
             insert : function(event){
+				
                 // 입력값은 user 에   있다.
                 console.log( this.$data.user);
                 var user = this.$data.user; 
+				
+                if(this.$data.user.name==''){
+                    alert('이름을 입력하세요');
+                    this.$refs.myinput.focus();
+                    return;
+                }
 
                 /* 
                 max(id)를 찾는 방법 
@@ -173,7 +180,10 @@
                 this.$data.list.splice(index, 1 );
 
             },
+		},
+        mounted(){
+            //myinput에 focus
+            this.$refs.myinput.focus();  //vue에선 $refs로 접근
         },
     })
-
 </script>
