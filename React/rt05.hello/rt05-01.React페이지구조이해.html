@@ -14,12 +14,12 @@
     <xmp>
         <!-- react 플러그인 include   -->
         <!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
-        
-        
-        
-        
-        
-        
+        < script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"> /* import { React} from 'react'; */</script>
+        < script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js">/* import { ReactDOM } from 'react-dom'; */</script>
+        < script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">/* JSX를 자바스크립트로 변환 */</script>
+        < script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.js">/* redux import */</script>
+        < script src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/7.1.3/react-redux.js">/* react-redux import */</script>
+        < script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"> /* jQuery library */</script>
 
 
         // After (16.0)
@@ -83,13 +83,16 @@
 
 
         작성  순서
-            1단계: 스크립트 플러그인 추가하기
-            2단계: 임포트 선언. 플러그인 방식에서는 필요 없음.
-                    import React from 'react';
-                    import React, {Component} from 'react';
-                    import ReactDOM from 'react-dom';
-            3단계: 컴포넌트 만들기
-            4단계: DOM에 컴포넌트 주입
+            단계1: 스크립트 플러그인 추가하기
+            단계2. React 객체 import 선언. 플러그인 방식에서는 필요 없음.
+                import React from 'react';
+                import React, {Component} from 'react';
+                import ReactDOM from 'react-dom';
+            단계3. React 객체 import 여부 확인
+                console.log(React);
+                console.log(ReactDOM);
+            단계4. React.Component 만들기
+            단계5. ReactDOM.render() 에 컴포넌트 주입
     </xmp>
     <hr>
 
@@ -103,6 +106,50 @@
 
 <!-- react 플러그인 include   -->
 <!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"> /* import { React} from 'react'; */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js">/* import { ReactDOM } from 'react-dom'; */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">/* JSX를 자바스크립트로 변환 */</script>
+<script type="text/babel">
+    //import React, { Component } from 'react';
+    //import ReactDOM from 'react-dom';
 
+    console.log(React);
+    console.log(React.Component);
+    console.log(ReactDOM);
 
-
+    // 단계3. 컴포넌트 만들기. 단축키 rcc , rcfc      
+    class Comp extends React.Component {
+
+        // 컴포넌트 상태(변수) 설정
+        state = {
+            mesg: " , hi!!!!"
+        }
+        constructor(props) {
+            super(props);
+
+            // 이벤트 핸들러는 this( 클래스 인스턴스)를 bind 한다.
+            this.handler = this.handler.bind(this);
+        }
+        // 이벤트 핸들러는 this를 constructor에서 bind 한다.
+        handler(event){
+            debugger;
+            alert(event.target);
+        }
+    
+        render() {
+            return (
+                <div onClick={this.handler}>
+                    Hello, {this.props.name} , {this.state.mesg}
+                </div>
+            );
+        };
+    }
+
+    // 단계4. ReactDOM 에 주입 
+    ReactDOM.render(
+        <Comp name="hello"></Comp> /* 컴포넌트삽입. 태그로 작성 */
+        ,
+        document.getElementById("app") /* 컴포넌트 삽입 위치 찾기 */
+    );    
+
+</script>

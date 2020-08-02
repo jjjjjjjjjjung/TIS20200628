@@ -10,15 +10,21 @@
 
 <body>
     <xmp>
+
+        ES6 코드를 브라우저에서 실행하려면 babel 이 필요하다.
+
+
         스프레드 사용법을 학습한다.
 
+        ES 5에서는
         arguments 매개변수는 유사 배열 객체다.
             length 프로퍼티가 있다.
             Array  메서드를 사용할 수 없다.
             arrow function에서는 arguments는 사용할 수 없다.
 
+        ES 6에서는
         rest 매개변수는 배열이다.
-            Spread 연산자(...)를 사용하여 함수의 매개변수를 작성한 형태다.
+            rest 연산자(...)를 사용하여 함수의 매개변수를 작성한 형태다.
             함수의 매개변수로 넘어오는 값들을 "배열"로 만든다.
 
         Spread 연산자는 ... 이다.
@@ -30,4 +36,51 @@
 
 </html>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">/* JSX를 자바스크립트로 변환 */</script>
+<script type="text/babel">
+
+    // ...abc 에서 ... 는 rest 연산자라고 부른다 
+    function func(...abc){
+
+    }
+
+    // spread 연산자 예제
+    const cities = ["K", "N", "L"];
+    // ...cities 에서 ... 는 spread 연산자라고 부른다 
+    console.log( ...cities ); // K, N, L
+    console.log( cities[0], cities[1], cities[2] ); // K, N, L
+
+    // spread 연산자 예제
+    const east = ["U", "K", "T"];
+    const west = ["N", "C", "G"];
+    const states = [...east, ...west]; // "U", "K", "T", "N", "C", "G"
+    console.log( states );
+
+    
+    // spread 연산자와 분할 연산자 결합 예제
+    let lakes = ["경포호", "화진포", "송지호", "청초호"];
+    let [first, ...rest] = lakes;
+    console.log( first); // "경포호"
+    console.log( rest ); // "화진포", "송지호", "청초호"
+
+    /*    
+    // ES5로 작성시 
+    function multiply( mutiplier, ...theArgs ) {
+        return theArgs.map( function(element){
+            return mutiplier*element
+        });
+    }
+    */
+   
+    // ES6로 작성시 
+    // rest 연산자 와 화살표 함수 
+    function multiply( mutiplier, ...theArgs ) {
+        return theArgs.map( (element)=>  mutiplier*element );
+    }
+    let arr = multiply( 2, 1,2,3,4); // arr === [2,4,6,8] 
+    console.log( "...arr >> ", ...arr); // 2,4,6,8
+    console.log( "arr >> ", arr);  // Array
+
+    
+
+</script>
